@@ -101,4 +101,14 @@ def get_arguments():
         help="Device to run the training: cpu, cuda (GPU), or mps (Apple M1/M2)",
     )
 
+    # Add this line to the parser
+    parser.add_argument(
+        "--test_case",
+        type=str,
+        choices=["self_attention", "multi_head_attention", "positional_encoding"],
+        #required=True,
+        default="self_attention",
+        help="Select the test case to run.",
+    )
+
     return parser.parse_args()

@@ -37,6 +37,7 @@ fi
 # Default configurations
 DATASETS=("Iris")  # Replace with lightweight datasets for iTransformers
 MODELS=("transformer")
+TEST_CASE="positional_encoding" #["self_attention", "multi_head_attention", "positional_encoding"]
 BATCH_SIZES=("32")
 NUM_CLASSES="10"
 LEARNING_RATE="0.001"
@@ -51,14 +52,15 @@ for EPOCH in "${EPOCHS[@]}"; do
   for DATASET in "${DATASETS[@]}"; do
     for MODEL in "${MODELS[@]}"; do
       for BATCH_SIZE in "${BATCH_SIZES[@]}"; do
-          OUTPUT_FILE="$OUTPUT_DIR/${MODEL}_${DATASET}_batch${BATCH_SIZE}_epoch${EPOCH}.log"
+          OUTPUT_FILE="$OUTPUT_DIR/${MODEL}_${TEST_CASE}_${DATASET}_${NUM_CLASSES}_batch${BATCH_SIZE}_epoch${EPOCH}.log"
 
-          echo "Running MODEL=$MODEL, DATASET=$DATASET, BATCH_SIZE=$BATCH_SIZE, EPOCHS=$EPOCH"
+          echo "Running MODEL=$MODEL, DATASET=$DATASET, NUM_CLASSES=$NUM_CLASSES, BATCH_SIZE=$BATCH_SIZE, EPOCHS=$EPOCH"
 
           # Execute the Python script with the current configuration
           python -u main.py \
               --task time_series \
               --model "$MODEL" \
+              --test_case "$TEST_CASE" \
               --data_path "./data/$DATASET" \
               --save_path "$OUTPUT_DIR" \
               --batch_size "$BATCH_SIZE" \
@@ -67,12 +69,12 @@ for EPOCH in "${EPOCHS[@]}"; do
               --device "$DEVICE" > "$OUTPUT_FILE" 2>&1
 
           if [[ $? -ne 0 ]]; then
-              echo "Error: Python script failed for MODEL=$MODEL, DATASET=$DATASET"
+              echo "Error: Python script failed for MODEL=$MODEL, MODEL=$TEST_CASE, DATASET=$DATASET"
               # make sure to executed export PYTHONPATH=$(pwd):$PYTHONPATH if any problem and your dirs are packages
               exit 1
           fi
 
-          echo "Execution complete for MODEL=$MODEL, DATASET=$DATASET, BATCH_SIZE=$BATCH_SIZE, EPOCHS=$EPOCH. Output logged in $OUTPUT_FILE."
+          echo "Execution complete for MODEL=$MODEL, MODEL=$TEST_CASE, DATASET=$DATASET, BATCH_SIZE=$BATCH_SIZE, EPOCHS=$EPOCH. Output logged in $OUTPUT_FILE."
       done
     done
   done

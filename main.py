@@ -23,6 +23,14 @@ from utils.argument_parser import get_arguments
 from utils.device_utils import setup_device
 from examples.test_self_attention import test_scaled_dot_product_attention
 from examples.test_multi_head_attention import test_multi_head_attention
+from examples.test_positional_encoding import test_positional_encoding
+
+# Map test case names to functions
+TEST_CASES = {
+    "self_attention": test_scaled_dot_product_attention,
+    "multi_head_attention": test_multi_head_attention,
+    "positional_encoding": test_positional_encoding,
+}
 
 def main():
     # Parse arguments
@@ -31,6 +39,7 @@ def main():
     # Setup device
     device = setup_device()
 
+    # Print configuration details
     print(f"Task: {args.task}")
     print(f"Model: {args.model}")
     print(f"Data Path: {args.data_path}")
@@ -39,11 +48,13 @@ def main():
     print(f"Epochs: {args.epochs}")
     print(f"Device: {device}")
 
-    #print(f"{10*''} Test Scaled dot product via self_attention {10*''}")
-    #test_scaled_dot_product_attention()
-
-    print(f"{10*''} Test Multihead Attention {10*''}")
-    test_multi_head_attention()
+    # Execute the selected test case
+    if args.test_case in TEST_CASES:
+        print(f"{10*''} Running {args.test_case} {10*''}")
+        TEST_CASES[args.test_case]()
+    else:
+        print(f"Invalid test case: {args.test_case}")
+        print(f"Available test cases: {list(TEST_CASES.keys())}")
 
 if __name__ == "__main__":
     main()

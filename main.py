@@ -25,6 +25,7 @@ from examples.test_self_attention import test_scaled_dot_product_attention
 from examples.test_multi_head_attention import test_multi_head_attention
 from examples.test_positional_encoding import test_positional_encoding
 from examples.test_transformer_encoder import test_transformer_encoder
+from examples.test_transformer_encoder_stack import test_transformer_encoder_stack
 
 # Map test case names to functions
 TEST_CASES = {
@@ -32,6 +33,7 @@ TEST_CASES = {
     "multi_head_attention": test_multi_head_attention,
     "positional_encoding": test_positional_encoding,
     "transformer_encoder": test_transformer_encoder,
+    "transformer_encoder_stack": test_transformer_encoder_stack,
 }
 
 

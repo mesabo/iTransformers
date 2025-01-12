@@ -106,7 +106,7 @@ def get_arguments():
         "--test_case",
         type=str,
         choices=["self_attention", "multi_head_attention", "positional_encoding",
-                 "transformer_encoder", ],
+                 "transformer_encoder", "transformer_encoder_stack", ],
         #required=True,
         default="self_attention",
         help="Select the test case to run.",

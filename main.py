@@ -24,13 +24,16 @@ from utils.device_utils import setup_device
 from examples.test_self_attention import test_scaled_dot_product_attention
 from examples.test_multi_head_attention import test_multi_head_attention
 from examples.test_positional_encoding import test_positional_encoding
+from examples.test_transformer_encoder import test_transformer_encoder
 
 # Map test case names to functions
 TEST_CASES = {
     "self_attention": test_scaled_dot_product_attention,
     "multi_head_attention": test_multi_head_attention,
     "positional_encoding": test_positional_encoding,
+    "transformer_encoder": test_transformer_encoder,
 }
+
 
 def main():
     # Parse arguments
@@ -50,11 +53,12 @@ def main():
 
     # Execute the selected test case
     if args.test_case in TEST_CASES:
-        print(f"{10*''} Running {args.test_case} {10*''}")
+        print(f"{10 * ''} Running {args.test_case} {10 * ''}")
         TEST_CASES[args.test_case]()
     else:
         print(f"Invalid test case: {args.test_case}")
         print(f"Available test cases: {list(TEST_CASES.keys())}")
+
 
 if __name__ == "__main__":
     main()

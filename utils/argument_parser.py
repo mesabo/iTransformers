@@ -105,7 +105,8 @@ def get_arguments():
     parser.add_argument(
         "--test_case",
         type=str,
-        choices=["self_attention", "multi_head_attention", "positional_encoding"],
+        choices=["self_attention", "multi_head_attention", "positional_encoding",
+                 "transformer_encoder", ],
         #required=True,
         default="self_attention",
         help="Select the test case to run.",

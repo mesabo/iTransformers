@@ -37,7 +37,7 @@ fi
 # Default configurations
 DATASETS=("Iris")  # Replace with lightweight datasets for iTransformers
 MODELS=("transformer")
-TEST_CASE="positional_encoding" #["self_attention", "multi_head_attention", "positional_encoding"]
+TEST_CASE="transformer_encoder" #["self_attention", "multi_head_attention", "positional_encoding", transformer_encoder]
 BATCH_SIZES=("32")
 NUM_CLASSES="10"
 LEARNING_RATE="0.001"

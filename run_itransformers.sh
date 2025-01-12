@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --gres=gpu:2
+#SBATCH --gres=gpu:1
 #SBATCH --nodelist=ai-gpgpu14
 
 # Load necessary environment
@@ -68,6 +68,7 @@ for EPOCH in "${EPOCHS[@]}"; do
 
           if [[ $? -ne 0 ]]; then
               echo "Error: Python script failed for MODEL=$MODEL, DATASET=$DATASET"
+              # make sure to executed export PYTHONPATH=$(pwd):$PYTHONPATH if any problem and your dirs are packages
               exit 1
           fi
 

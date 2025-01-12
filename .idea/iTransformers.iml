@@ -11,11 +11,7 @@
   <component name="PyNamespacePackagesService">
     <option name="namespacePackageFolders">
       <list>
-        <option value="$MODULE_DIR$/training" />
         <option value="$MODULE_DIR$/notebooks" />
-        <option value="$MODULE_DIR$/models" />
-        <option value="$MODULE_DIR$/foundation" />
-        <option value="$MODULE_DIR$/examples" />
         <option value="$MODULE_DIR$/advanced" />
         <option value="$MODULE_DIR$/utils" />
       </list>

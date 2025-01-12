@@ -116,26 +116,26 @@ python -c "import torch; print(torch.__version__)"
 ## Directory Structure
 
 ```
-iTransformers/
-├── foundation/
-│   ├── self_attention.py      # Scaled Dot-Product Attention
-│   ├── multi_head_attention.py # Multi-Head Attention
-│   ├── positional_encoding.py # Positional Encoding
-│   ├── transformer_encoder.py # Transformer Encoder
-│   ├── transformer_decoder.py # Transformer Decoder
-│   └── transformer_model.py   # Full Transformer
-├── utils/
-│   ├── __init__.py            # Makes this a package
-│   ├── data_utils.py          # Utilities for dataset preparation
-│   ├── training_utils.py      # Utilities for training and evaluation
-│   ├── visualization_utils.py # Utilities for visualizing results
-│   └── misc.py                # Miscellaneous utilities
-├── training/
-│   ├── dataset_preparation.py # Dataset preparation scripts
-│   ├── train_transformer.py   # Training scripts
-├── advanced/
-│   ├── fine_tuning.py         # Fine-tune pre-trained Transformers
-│   └── time_series_transformer.py # Multivariate time series Transformer
+iTransformers/src/
+    ├── foundation/
+    │   ├── self_attention.py      # Scaled Dot-Product Attention
+    │   ├── multi_head_attention.py # Multi-Head Attention
+    │   ├── positional_encoding.py # Positional Encoding
+    │   ├── transformer_encoder.py # Transformer Encoder
+    │   ├── transformer_decoder.py # Transformer Decoder
+    │   └── transformer_model.py   # Full Transformer
+    ├── utils/
+    │   ├── __init__.py            # Makes this a package
+    │   ├── data_utils.py          # Utilities for dataset preparation
+    │   ├── training_utils.py      # Utilities for training and evaluation
+    │   ├── visualization_utils.py # Utilities for visualizing results
+    │   └── misc.py                # Miscellaneous utilities
+    ├── training/
+    │   ├── dataset_preparation.py # Dataset preparation scripts
+    │   ├── train_transformer.py   # Training scripts
+    ├── advanced/
+    │   ├── fine_tuning.py         # Fine-tune pre-trained Transformers
+    │   └── time_series_transformer.py # Multivariate time series Transformer
 ├── examples/
 │   ├── seq2seq_example.py     # Sequence-to-sequence task
 │   ├── classification_example.py # Classification task

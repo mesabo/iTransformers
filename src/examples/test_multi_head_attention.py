@@ -13,7 +13,7 @@ Lab: Prof YU Keping's Lab
 """
 
 import torch
-from foundation.multi_head_attention import MultiHeadAttention
+from src.foundation.multi_head_attention import MultiHeadAttention
 
 def test_multi_head_attention():
     d_model = 64  # Model dimension

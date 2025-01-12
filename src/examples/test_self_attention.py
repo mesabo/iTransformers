@@ -13,7 +13,7 @@ Lab: Prof YU Keping's Lab
 """
 
 import torch
-from foundation.self_attention import ScaledDotProductAttention
+from src.foundation.self_attention import ScaledDotProductAttention
 
 def test_scaled_dot_product_attention():
     try:

@@ -13,26 +13,28 @@ Lab: Prof YU Keping's Lab
 """
 
 import torch
-from foundation.transformer_encoder import TransformerEncoderBlock
+from src.foundation.transformer_encoder_stack import TransformerEncoder
 
-def test_transformer_encoder():
-    d_model = 64  # Model dimension
+def test_transformer_encoder_stack():
+    input_dim = 4  # Iris dataset has 4 features
+    d_model = 64   # Model dimension
     num_heads = 8  # Number of attention heads
     ff_hidden_dim = 128  # Hidden dimension of feedforward network
-    seq_len = 10  # Sequence length
+    num_layers = 3  # Number of encoder blocks
+    seq_len = 10    # Sequence length
     batch_size = 2
 
     # Generate random input tensor
-    x = torch.rand(batch_size, seq_len, d_model)
+    x = torch.rand(batch_size, seq_len, input_dim)
 
-    # Instantiate the Transformer Encoder Block
-    encoder_block = TransformerEncoderBlock(d_model, num_heads, ff_hidden_dim)
+    # Instantiate the Transformer Encoder
+    encoder = TransformerEncoder(input_dim, d_model, num_heads, ff_hidden_dim, num_layers)
 
     # Forward pass
-    output = encoder_block(x)
+    output = encoder(x)
 
-    print("Input Shape:", x.shape)  # Expected: (batch_size, seq_len, d_model)
+    print("Input Shape:", x.shape)  # Expected: (batch_size, seq_len, input_dim)
     print("Output Shape:", output.shape)  # Expected: (batch_size, seq_len, d_model)
 
 # if __name__ == "__main__":
-#     test_transformer_encoder()
+#     test_transformer_encoder_stack()

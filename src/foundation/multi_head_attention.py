@@ -37,7 +37,7 @@ Where:
 
 import torch
 import torch.nn as nn
-from foundation.self_attention import ScaledDotProductAttention
+from src.foundation.self_attention import ScaledDotProductAttention
 
 
 class MultiHeadAttention(nn.Module):

@@ -37,7 +37,7 @@ fi
 # Default configurations
 DATASETS=("Iris")  # Replace with lightweight datasets for iTransformers
 MODELS=("transformer")
-TEST_CASE="transformer_encoder_stack"
+TEST_CASE="data_preparation"
 BATCH_SIZES=("32")
 NUM_CLASSES="10"
 LEARNING_RATE="0.001"

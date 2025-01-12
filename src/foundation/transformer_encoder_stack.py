@@ -27,8 +27,8 @@ Components
 
 import torch
 import torch.nn as nn
-from foundation.positional_encoding import PositionalEncoding
-from foundation.transformer_encoder import TransformerEncoderBlock
+from src.foundation.positional_encoding import PositionalEncoding
+from src.foundation.transformer_encoder import TransformerEncoderBlock
 
 
 class TransformerEncoder(nn.Module):

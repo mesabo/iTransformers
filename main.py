@@ -22,6 +22,7 @@ sys.path.append(str(PROJECT_ROOT))
 from utils.argument_parser import get_arguments
 from utils.device_utils import setup_device
 from examples.test_self_attention import test_scaled_dot_product_attention
+from examples.test_multi_head_attention import test_multi_head_attention
 
 def main():
     # Parse arguments
@@ -38,8 +39,11 @@ def main():
     print(f"Epochs: {args.epochs}")
     print(f"Device: {device}")
 
-    print(f"{10*''} Test Scaled dot product via self_attention {10*''}")
-    test_scaled_dot_product_attention()
+    #print(f"{10*''} Test Scaled dot product via self_attention {10*''}")
+    #test_scaled_dot_product_attention()
+
+    print(f"{10*''} Test Multihead Attention {10*''}")
+    test_multi_head_attention()
 
 if __name__ == "__main__":
     main()

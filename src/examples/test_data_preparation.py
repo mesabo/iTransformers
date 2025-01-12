@@ -38,5 +38,5 @@ def test_data_preparation():
         print(f"Labels Shape: {labels.shape}")
         break
 
-if __name__ == "__main__":
-    test_data_preparation()
+# if __name__ == "__main__":
+#     test_data_preparation()

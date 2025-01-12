@@ -1,0 +1,25 @@
+name: itransformers
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.13.1
+  - pip
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - matplotlib
+  - seaborn
+  - tqdm
+  - pillow
+  - h5py
+  - pyyaml
+  - pytorch=2.5.1
+  - torchvision
+  - pip:
+      - opacus
+      - pytorch-memlab
+      - tensorboard
+      - torch-tb-profiler

@@ -12,15 +12,17 @@ Dept: Science and Engineering
 Lab: Prof YU Keping's Lab
 """
 '''
--->OBJECTIVE: Prepare the Iris dataset for the Transformer Encoder. This involves:
+-->OBJECTIVE: Prepare the Iris dataset for the Transformer Encoder.
+---------------------------------------------
+This involves:
 	1.	Loading and preprocessing the data.
 	2.	Splitting the data into training and testing sets.
 	3.	Creating a PyTorch DataLoader for efficient batching.
----------------------------------------------
-'''
 
-import pandas as pd
+'''
 import torch
+import torch.nn.functional as F
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from torch.utils.data import DataLoader, Dataset
@@ -79,6 +81,68 @@ def load_iris_data(data_path, batch_size=32):
     # Create PyTorch Datasets
     train_dataset = IrisDataset(X_train, y_train)
     test_dataset = IrisDataset(X_test, y_test)
+
+    # Create DataLoaders
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+    return train_loader, test_loader
+
+class IrisSeq2SeqDataset(Dataset):
+    """
+    Custom PyTorch Dataset for Iris Seq2Seq tasks.
+    """
+    def __init__(self, data, labels, num_classes):
+        """
+        Args:
+            data (torch.Tensor): Input features (num_samples, num_features).
+            labels (torch.Tensor): Target labels (num_samples,).
+            num_classes (int): Number of output classes.
+        """
+        self.data = data
+        self.labels = F.one_hot(labels, num_classes=num_classes).float()
+
+    def __len__(self):
+        return len(self.labels)
+
+    def __getitem__(self, idx):
+        return self.data[idx], self.labels[idx]
+
+
+def load_iris_seq2seq_data(data_path, batch_size=32):
+    """
+    Loads and preprocesses the Iris dataset for Seq2Seq tasks.
+
+    Args:
+        data_path (str): Path to the Iris dataset CSV file.
+        batch_size (int): Batch size for DataLoader.
+
+    Returns:
+        tuple: Training DataLoader, Testing DataLoader.
+    """
+    # Load the dataset
+    df = pd.read_csv(data_path)
+    features = df.iloc[:, :-1].values  # Input features
+    labels = df.iloc[:, -1].values     # Target labels
+
+    # Encode string labels as integers
+    label_encoder = LabelEncoder()
+    labels = label_encoder.fit_transform(labels)
+
+    # Standardize the features
+    scaler = StandardScaler()
+    features = scaler.fit_transform(features)
+
+    # Convert to PyTorch tensors
+    features = torch.tensor(features, dtype=torch.float32)
+    labels = torch.tensor(labels, dtype=torch.long)
+
+    # Split into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.2, random_state=42)
+
+    # Create PyTorch Datasets
+    train_dataset = IrisSeq2SeqDataset(X_train, y_train, num_classes=3)
+    test_dataset = IrisSeq2SeqDataset(X_test, y_test, num_classes=3)
 
     # Create DataLoaders
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)

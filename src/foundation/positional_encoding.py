@@ -75,6 +75,7 @@ class PositionalEncoding(nn.Module):
         Returns:
             torch.Tensor: Tensor with positional encodings added (batch_size, seq_len, d_model).
         """
-        seq_len = x.size(1)
-        x = x + self.pe[:, :seq_len, :]
+        seq_len = x.size(1)  # Get sequence length from input
+        assert x.size(2) == self.pe.size(2), "d_model mismatch between input and PositionalEncoding"
+        x = x + self.pe[:, :seq_len, :].to(x.device)
         return x

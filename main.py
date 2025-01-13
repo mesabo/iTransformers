@@ -27,6 +27,7 @@ from src.examples.test_positional_encoding import test_positional_encoding
 from src.examples.test_transformer_encoder import test_transformer_encoder
 from src.examples.test_transformer_encoder_stack import test_transformer_encoder_stack
 from src.examples.test_data_preparation import test_data_preparation
+from src.examples.test_train_transformer_encoder import test_train_transformer_encoder
 
 # Map test cases to functions
 TEST_CASES = {
@@ -36,6 +37,7 @@ TEST_CASES = {
     "transformer_encoder": test_transformer_encoder,
     "transformer_encoder_stack": test_transformer_encoder_stack,
     "data_preparation": test_data_preparation,
+    "train_transformer_encoder": test_train_transformer_encoder,
 }
 
 def main():

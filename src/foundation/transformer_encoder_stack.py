@@ -73,9 +73,16 @@ class TransformerEncoder(nn.Module):
         Returns:
             torch.Tensor: Output of the encoder stack (batch_size, seq_len, d_model).
         """
+        # Debug original shape
+        print(f"Original Input Shape: {x.shape}")
+
         # Apply input embedding and positional encoding
-        x = self.input_embedding(x)
-        x = self.positional_encoding(x)
+        x = self.input_embedding(x)  # Shape: (batch_size, seq_len, d_model)
+        print(f"Shape after Embedding: {x.shape}")
+
+        x = self.positional_encoding(x)  # Shape: (batch_size, seq_len, d_model)
+        print(f"Shape after Positional Encoding: {x.shape}")
+
         x = self.dropout(x)
 
         # Pass through each encoder block
